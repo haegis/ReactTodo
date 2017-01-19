@@ -9,4 +9,18 @@ describe("Todo", () => {
   it("should exist", () => {
     expect(Todo).toExist();
   });
+
+  it("should invoke onToggle with id on click", () => {
+    var data = {
+      id: 65,
+      text: "Do something",
+      completed: true
+    };
+
+    var spy = expect.createSpy();
+    var main = TestUtils.renderIntoDocument(<Todo {...data} onToggle={spy} />);
+
+    TestUtils.Simulate.click(TestUtils.findRenderedDOMComponentWithTag(main, 'div'));
+    expect(spy).toHaveBeenCalledWith(65);
+  });
 });

@@ -18,5 +18,20 @@ describe("Main", () => {
 
     expect(main.state.todos.length).toBe(1);
     expect(main.state.todos[0].text).toBe("Do something!");
+    expect(main.state.todos[0].completed).toBe(false);
+  });
+
+  it("should toggle completed value when onHandleToggle called", () => {
+    var data = {
+      id: 5,
+      text: "Do something",
+      completed: false
+    };
+
+    var main = TestUtils.renderIntoDocument(<Main />);
+    main.setState({todos: [data]});
+
+    main.handleToggle(5);
+    expect(main.state.todos[0].completed).toBe(true);
   });
 });
