@@ -22,4 +22,14 @@ describe("TodoList", () => {
 
     expect(renderedTodoComponents.length).toBe(todos.length);
   });
+
+  it("should render empty message when no todos", () => {
+    var todos = [
+    ];
+
+    var renderedTodoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
+    var renderedEmptyMessage = TestUtils.scryRenderedDOMComponentsWithClass(renderedTodoList, "container-message");
+
+    expect(renderedEmptyMessage.length).toBe(1);
+  });
 });

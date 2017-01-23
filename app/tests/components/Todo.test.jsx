@@ -20,7 +20,9 @@ describe("Todo", () => {
     var spy = expect.createSpy();
     var main = TestUtils.renderIntoDocument(<Todo {...data} onToggle={spy} />);
 
-    TestUtils.Simulate.click(TestUtils.findRenderedDOMComponentWithTag(main, 'div'));
+    // TestUtils.Simulate.click(TestUtils.findRenderedDOMComponentWithTag(main, 'div'));
+    TestUtils.Simulate.click(TestUtils.findRenderedDOMComponentWithClass(main, "todo-completed"));
+
     expect(spy).toHaveBeenCalledWith(65);
   });
 });
