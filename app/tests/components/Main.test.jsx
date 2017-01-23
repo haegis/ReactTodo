@@ -19,13 +19,16 @@ describe("Main", () => {
     expect(main.state.todos.length).toBe(1);
     expect(main.state.todos[0].text).toBe("Do something!");
     expect(main.state.todos[0].completed).toBe(false);
+    expect(main.state.todos[0].createdDate).toBeA("number");
   });
 
-  it("should toggle completed value when onHandleToggle called", () => {
+  it("should toggle values to completed when onToggle invoked", () => {
     var data = {
       id: 5,
       text: "Do something",
-      completed: false
+      completed: false,
+      createdDate: 0,
+      completedDate: undefined
     };
 
     var main = TestUtils.renderIntoDocument(<Main />);
@@ -33,5 +36,23 @@ describe("Main", () => {
 
     main.handleToggle(5);
     expect(main.state.todos[0].completed).toBe(true);
+    expect(main.state.todos[0].completedDate).toBeA("number");
+  });
+
+  it("should toggle values to uncompleted when onToggle invoked", () => {
+    var data = {
+      id: 5,
+      text: "Do something",
+      completed: true,
+      createdDate: 0,
+      completedDate: 15
+    };
+
+    var main = TestUtils.renderIntoDocument(<Main />);
+    main.setState({todos: [data]});
+
+    main.handleToggle(5);
+    expect(main.state.todos[0].completed).toBe(false);
+    expect(main.state.todos[0].completedDate).toBe(undefined);
   });
 });
