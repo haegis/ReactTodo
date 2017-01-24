@@ -1,6 +1,8 @@
 var React = require("react");
+var {connect} = require("react-redux");
+var actions = require("actions");
 
-var AddTodoForm = React.createClass({
+export var AddTodoForm = React.createClass({
   render: function() {
     return (
       <div className="container-footer">
@@ -14,13 +16,13 @@ var AddTodoForm = React.createClass({
 
   handleSubmit: function(event) {
     event.preventDefault();
-
+  
     var text = this.refs.text.value;
     if (text.length > 0) {
       this.refs.text.value = "";
-      this.props.onAddTodo(text);
+      this.props.dispatch(actions.addTodo(text));
     }
   }
 });
 
-module.exports = AddTodoForm;
+export default connect()(AddTodoForm);

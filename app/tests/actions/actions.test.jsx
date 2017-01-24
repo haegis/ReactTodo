@@ -17,7 +17,7 @@ describe("actions", () => {
       text: "Do something else"
     }
 
-    expect(actions.addTodo(expected.text), expected);
+    expect(actions.addTodo(expected.text)).toEqual(expected);
   });
 
   it("should generate toggle show completed action", () => {
@@ -34,6 +34,26 @@ describe("actions", () => {
       id: 1337
     }
 
-    expect(actions.toggleTodo(expected.id), expected);
+    expect(actions.toggleTodo(expected.id)).toEqual(expected);
+  });
+
+  it("should generate add todos action", () => {
+    var todos = [
+      {
+        id: 1337,
+        text: "Do something",
+        completed: false,
+        completedDate: undefined,
+        createdDate: 32000
+      }
+    ];
+
+    var expected = {
+      type: "ADD_TODOS",
+      todos
+
+    }
+
+    expect(actions.addTodos(todos)).toEqual(expected);
   });
 });
