@@ -11,11 +11,13 @@ export var TodoSearch = React.createClass({
         <div>
           <input type="search" ref="searchText" placeholder="Search todo" value={searchText} onChange={() => {
               dispatch(actions.setSearchText(this.refs.searchText.value));
+            }} />
         </div>
         <div>
           <label>
             <input type="checkbox" ref="showCompleted" checked={showCompleted} onChange={() => {
                 dispatch(actions.toggleShowCompleted());
+              }} />
             Show completed todos
           </label>
         </div>
